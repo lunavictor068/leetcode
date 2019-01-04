@@ -22,20 +22,28 @@ Explanation: The answer is "wke", with the length of 3.
              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 '''
 
-class Solution(object):
+class Solution:
     def lengthOfLongestSubstring(self, s):
         """
         :type s: str
         :rtype: int
         """
         length = len(s)
-        for i in range(length, 0, -1):
+        # length of longest possible substring w/o repetion is the number of unique elements
+        unique = len(set(s))
+        # test all substring from the highest possible length, to 1
+        for i in range(unique, 0, -1):
+        	# get all substrings of length i
              substrings = [s[a:b] for a, b in zip(range(0, length), range(i, length + 1))]
+             # check if a substring does not contain repetition
              for sub in substrings:
+             	# substring does not contain repetition, return its length (i)
              	if len(set(sub)) == len(sub):
              		return i
+        # if above did not return, empty string was given
         return 0
 
+# test
 test_cases = [("abcabcbb",3), ("bbbbb",1), ("pwwkew",3), ("dvdf",3), ("dvabcdef",7), ("aaaaab",2), ("baaaaa",2), ("aaabcaaa",3), ("aaaabacaaa",3), ("",0), (" ",1), ("a",1)]
 for tin, tout in test_cases:
 	out = Solution.lengthOfLongestSubstring(Solution, tin)
