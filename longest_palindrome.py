@@ -14,6 +14,8 @@ Example 2:
 Input: "cbbd"
 Output: "bb"
 '''
+
+
 class Solution:
     def longestPalindrome(self, s):
         """
