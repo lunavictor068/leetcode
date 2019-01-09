@@ -15,11 +15,32 @@ Input: "cbbd"
 Output: "bb"
 '''
 
+def longestPalindrome(s):
+    """
+    :type s: str
+    :rtype: str
+    """
+    if s == "":
+    	return s
+    for l in range(len(s), 0, -1):
+    	for i in range(l, len(s) + 1, 1):
+    		sub_str = s[i-l:i]
+    		if is_palindrome(sub_str):
+    			return sub_str
 
-class Solution:
-    def longestPalindrome(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
-        
+
+def is_palindrome(string):
+    length = len(string)
+    for a, b in zip(range(0, length - 1, 1), range(length - 1, -1, -1)):
+        if a >= b:
+            break
+        if string[a] != string[b]:
+            return False
+    return True
+
+
+print(longestPalindrome("racecar"))
+print(longestPalindrome("r"))
+print(longestPalindrome("njs,mdakjsjdfsjkracecari82ms82mjnioyuisd"))
+print(longestPalindrome("babad"))
+
